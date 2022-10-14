@@ -29,6 +29,13 @@ class MyApp extends StatelessWidget {
                   secondary: const Color(0xff0d7377),
                   background:const Color(0xff323232)
                 ), 
+          buttonTheme: ButtonTheme.of(context).copyWith(
+            buttonColor:const Color(0xff14ffec),
+            textTheme: ButtonTextTheme.primary,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20)
+            )
+          )
       ),
       home: AuthScreen(),
     );
