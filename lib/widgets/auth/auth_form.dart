@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AuthForm extends StatefulWidget {
-  AuthForm(this.submitFn);
+  AuthForm(this.submitFn, this.isLoading);
+
+  final bool isLoading;
 
   final void Function(
       String email, String password, String username, bool isLogin) submitFn;
@@ -23,10 +25,10 @@ class _AuthFormState extends State<AuthForm> {
     if (isValid) {
       _formKey.currentState!.save();
       widget.submitFn(
-        _userEmail,
-        _userPass,
-        _userName,
-        _isLogin
+        _userEmail.trim(),
+        _userPass.trim(),
+        _userName.trim(),
+        _isLogin,
       );
     }
   }
@@ -47,7 +49,7 @@ class _AuthFormState extends State<AuthForm> {
                 children: [
                   if (!_isLogin)
                     TextFormField(
-                      key: ValueKey('username'),
+                      key: const ValueKey('username'),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "You Cant Leave Username Empty";
@@ -60,9 +62,9 @@ class _AuthFormState extends State<AuthForm> {
                       },
                     ),
                   TextFormField(
-                    key: ValueKey('email'),
+                    key: const ValueKey('email'),
                     validator: (value) {
-                      if (value!.isEmpty || value.contains('@')) {
+                      if (value!.isEmpty) {
                         return 'Enter a valid email';
                       }
                       return null;
@@ -76,7 +78,7 @@ class _AuthFormState extends State<AuthForm> {
                     },
                   ),
                   TextFormField(
-                    key: ValueKey('password'),
+                    key: const ValueKey('password'),
                     validator: (value) {
                       if (value!.isEmpty || value.length < 7) {
                         return "Pasword must contain 7 charator";
@@ -94,16 +96,20 @@ class _AuthFormState extends State<AuthForm> {
                   const SizedBox(
                     height: 10,
                   ),
+                  if(widget.isLoading)
+                    CircularProgressIndicator(),
+                  if(!widget.isLoading)
                   RaisedButton(
                     onPressed: _trySubmit,
                     child: Text(_isLogin ? 'Login' : 'Signup'),
                   ),
                   const SizedBox(height: 4),
+                  if(!widget.isLoading)
                   OutlinedButton(
                     onPressed: () {
                       setState(() {
                         _isLogin = !_isLogin;
-                      });
+                      },);
                     },
                     style: OutlinedButton.styleFrom(
                         side: BorderSide(

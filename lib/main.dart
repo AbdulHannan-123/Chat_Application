@@ -8,7 +8,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     // ignore: prefer_const_constructors
     options: FirebaseOptions(
-        apiKey: "AIzaSyDUEjdwhqEOpZXaro7s5Z5rKCnaZS7ZxW0",
+        apiKey: "AIzaSyDD5ZthaPsbSqWhyBagoGkv3xPuD31rEvc",
         appId: "",
         messagingSenderId: "",
         projectId: "flutter-chat-e368c"),
