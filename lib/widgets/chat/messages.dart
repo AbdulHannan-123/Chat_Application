@@ -2,6 +2,7 @@ import 'dart:html';
 
 import 'package:chat_application_2022/widgets/chat/message_bubble.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Messages extends StatelessWidget {
@@ -18,10 +19,13 @@ class Messages extends StatelessWidget {
           );
         }
         final chatdocs = snapshot.data!.docs;
+        final FirebaseAuth _auth = FirebaseAuth.instance;    
+        final User? user;
+        user = _auth.currentUser;
         return ListView.builder(
           reverse: true,
           itemCount: chatdocs.length,
-          itemBuilder: (context, index) =>MessageBubble(chatdocs[index]['text']),
+          itemBuilder: (context, index) =>MessageBubble(chatdocs[index]['text'],chatdocs[index]['userId'] == user!.uid),
         );
       },
     );
