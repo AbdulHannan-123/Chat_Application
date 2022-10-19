@@ -40,12 +40,14 @@ class _AuthScreenState extends State<AuthScreen> {
             .child('user_images')                 //// folder k naam ha
             .child(authResults.user!.uid + '.jpg');         //// file k naam ha
 
-            ref.putFile(image);           //// this put the file in upper path
+        await ref.putFile(image);           //// this put the file in upper path
 
-        FirebaseFirestore.instance
+        final url = await ref.getDownloadURL();              /// get the image from the user
+
+        await FirebaseFirestore.instance
             .collection('users')
             .doc(authResults.user!.uid)
-            .set({'username': username, 'email': email});
+            .set({'username': username, 'email': email , 'image_url':url});
       }
     } on PlatformException catch (err) {
       var message = 'An error occured, please check your credential';
