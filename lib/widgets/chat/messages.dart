@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:chat_application_2022/widgets/chat/message_bubble.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
