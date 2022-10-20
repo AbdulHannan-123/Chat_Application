@@ -8,8 +8,8 @@ class AuthForm extends StatefulWidget {
 
   final bool isLoading;
 
-  final void Function(
-      String email, String password, String username,File image ,bool isLogin) submitFn;
+  final void Function(String email, String password, String username,
+      File image, bool isLogin) submitFn;
 
   @override
   State<AuthForm> createState() => _AuthFormState();
