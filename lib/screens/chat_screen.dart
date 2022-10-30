@@ -73,26 +73,6 @@ class _ChatScreenState extends State<ChatScreen> {
           NewMessage()
         ],
       )),
-      //  StreamBuilder(
-      //   stream: FirebaseFirestore.instance
-      //       .collection('chats/wLKN067msappUusCZc9f/messages')
-      //       .snapshots(),
-      //   builder: (ctx, AsyncSnapshot streamSnapshot) {
-      //     if (streamSnapshot.connectionState == ConnectionState.waiting) {
-      //       return const Center(
-      //         child: CircularProgressIndicator(),
-      //       );
-      //     }
-      //     final documents = streamSnapshot.data!.docs;
-      //     return ListView.builder(
-      //       itemCount: documents.length,
-      //       itemBuilder: (ctx, index) => Container(
-      //         padding: const EdgeInsets.all(8),
-      //         child: Text(documents[index]['text']),
-      //       ),
-      //     );
-      //   },
-      // ),
     );
   }
 }
