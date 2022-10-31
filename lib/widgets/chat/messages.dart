@@ -9,21 +9,28 @@ class Messages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: FirebaseFirestore.instance.collection('chats').orderBy('createdAt', descending: true).snapshots(),
-      builder: (context,AsyncSnapshot snapshot) {
+      stream: FirebaseFirestore.instance
+          .collection('chats')
+          .orderBy('createdAt', descending: true)
+          .snapshots(),
+      builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         }
         final chatdocs = snapshot.data!.docs;
-        final FirebaseAuth _auth = FirebaseAuth.instance;    
+        final FirebaseAuth _auth = FirebaseAuth.instance;
         final User? user;
         user = _auth.currentUser;
         return ListView.builder(
           reverse: true,
           itemCount: chatdocs.length,
-          itemBuilder: (context, index) =>MessageBubble(chatdocs[index]['text'],chatdocs[index]['userId'] == user!.uid, chatdocs[index]['username'], chatdocs[index]['userImage']),
+          itemBuilder: (context, index) => MessageBubble(
+              chatdocs[index]['text'],
+              chatdocs[index]['userId'] == user!.uid,
+              chatdocs[index]['username'],
+              chatdocs[index]['userImage']),
         );
       },
     );

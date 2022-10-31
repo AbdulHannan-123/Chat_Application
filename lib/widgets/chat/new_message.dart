@@ -12,7 +12,7 @@ class NewMessage extends StatefulWidget {
 
 class _NewMessageState extends State<NewMessage> {
   var _enteredMessage = '';
-  final _controller = new TextEditingController();
+  final _controller =  TextEditingController();
 
   void _sendMessage() async{
     FocusScope.of(context).unfocus();
