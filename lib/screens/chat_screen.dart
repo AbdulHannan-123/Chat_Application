@@ -42,9 +42,11 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
             items: [
               DropdownMenuItem(
+                value: 'logout',
+                // ignore: avoid_unnecessary_containers
                 child: Container(
                   child: Row(
-                    children: [
+                    children:const [
                       Icon(Icons.exit_to_app),
                       SizedBox(
                         width: 8,
@@ -53,7 +55,6 @@ class _ChatScreenState extends State<ChatScreen> {
                     ],
                   ),
                 ),
-                value: 'logout',
               ),
             ],
             onChanged: (itemIdetifier) {
@@ -64,9 +65,10 @@ class _ChatScreenState extends State<ChatScreen> {
           )
         ],
       ),
+      // ignore: avoid_unnecessary_containers
       body: Container(
           child: Column(
-        children: [
+        children:const [
           Expanded(
             child: Messages(),
           ),
