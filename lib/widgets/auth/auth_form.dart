@@ -34,7 +34,7 @@ class _AuthFormState extends State<AuthForm> {
     if (_userImageFile == null && !_isLogin) {
       Scaffold.of(context).showSnackBar(
         SnackBar(
-          content: Text('Please pick an image'),
+          content:const Text('Please pick an image'),
           backgroundColor: Theme.of(context).colorScheme.primary,
         ),
       );
