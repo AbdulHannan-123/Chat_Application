@@ -54,12 +54,12 @@ class _AuthScreenState extends State<AuthScreen> {
       if (err.message != null) {
         message = err.message.toString();
       }
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(message),
-          backgroundColor: Colors.red,
-        ),
-      );
+      ScaffoldMessenger.of(context).showSnackBar(
+  SnackBar(
+    content: const Text('Please pick an image'),
+    backgroundColor: Theme.of(context).colorScheme.primary,
+  ),
+);
       setState(() {
         _isLoading = false;
       });
